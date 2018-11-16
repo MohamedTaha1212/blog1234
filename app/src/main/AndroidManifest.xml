@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".BlogActivity" />
-        <activity android:name=".MaterialsActivity"></activity>
+        <activity android:name=".MaterialsActivity"/>
     </application>
 
 </manifest>

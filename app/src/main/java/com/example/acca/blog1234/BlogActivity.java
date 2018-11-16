@@ -3,6 +3,7 @@ package com.example.acca.blog1234;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -12,8 +13,6 @@ import android.view.MenuItem;
 
 public class BlogActivity extends AppCompatActivity {
 
-    private SectionsPageAdapter mSectionsPageAdapter;
-
     private ViewPager mViewPager;
 
     @Override
@@ -21,40 +20,33 @@ public class BlogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blog);
 
-        BlogQuery.ArticlesAsyncTask task = new BlogQuery.ArticlesAsyncTask();
-        task.execute();
 
-
-
-        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+        SectionsPageAdapter mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container_blog);
         setupViewPager(mViewPager);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_launcher_foreground);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_launcher_foreground);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_launcher_foreground);
-        tabLayout.getTabAt(3).setIcon(R.drawable.ic_launcher_foreground);
+        tabLayout.getTabAt(0).setText("Marketing");
+        tabLayout.getTabAt(1).setText("Soft Skills");
+        tabLayout.getTabAt(2).setText("Design");
+        tabLayout.getTabAt(3).setText("Web");
 
+                //Bottom Navigation Code
 
-
-
-
-
-
-
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavView_Bar);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
+        layoutParams.setBehavior(new BottomNavigationViewBehavior());
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(0);
         menuItem.setChecked(true);
 
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
+        bottomNavigationView = findViewById(R.id.bottomNavView_Bar);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         menu = bottomNavigationView.getMenu();
         menuItem = menu.getItem(1);
@@ -86,6 +78,7 @@ public class BlogActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
