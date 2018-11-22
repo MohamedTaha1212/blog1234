@@ -19,49 +19,33 @@ public class BlogAdapter extends ArrayAdapter<BlogArticle>{
         super(context, 0, articles);
     }
 
-    public View getView(int position, View convertView, ViewGroup parent){
+    @NonNull
+    public View getView(int position, View convertView, @NonNull ViewGroup parent){
         View listItemView = convertView;
         if(listItemView == null){
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.blog_list_item, parent, false);
         }
         BlogArticle currentArticle = getItem(position);
 
-        ImageView BlogImageView = (ImageView)  listItemView.findViewById(R.id.BlogImageView);
+        ImageView BlogImageView = listItemView.findViewById(R.id.BlogImageView);
         assert currentArticle != null;
         String imageUri = currentArticle.image;
         Picasso.get().load(imageUri).into(BlogImageView);
 
 
-        TextView nameView = (TextView)  listItemView.findViewById(R.id.nameView);
+        TextView nameView = listItemView.findViewById(R.id.nameView);
         nameView.setText(currentArticle.getName());
 
-        TextView descriptionView = (TextView)  listItemView.findViewById(R.id.descriptionView);
+        TextView descriptionView = listItemView.findViewById(R.id.descriptionView);
         descriptionView.setText(currentArticle.getDescription());
 
-        TextView idView = (TextView)  listItemView.findViewById(R.id.idView);
+        TextView idView = listItemView.findViewById(R.id.idView);
         idView.setText(currentArticle.getId());
 
-        TextView dateView = (TextView)  listItemView.findViewById(R.id.dateView);
+        TextView dateView = listItemView.findViewById(R.id.dateView);
         dateView.setText(currentArticle.getDate());
 
         return listItemView;
     }
 
-    /*
-            cardView.setImageResource(R.drawable.activation);
-    public Bitmap getBitmapFromURL(String src){
-        try {
-            URL url = new URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input)
-
-            return myBitmap;
-
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 }

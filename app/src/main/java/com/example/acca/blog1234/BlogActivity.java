@@ -37,7 +37,7 @@ public class BlogActivity extends AppCompatActivity {
         tabLayout.getTabAt(3).setText("Web");
 
                 //Bottom Navigation Code
-
+/**
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavView_Bar);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
@@ -50,6 +50,22 @@ public class BlogActivity extends AppCompatActivity {
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         menu = bottomNavigationView.getMenu();
         menuItem = menu.getItem(1);
+        menuItem.setChecked(true);
+ @Override
+ public void onBackPressed() {
+ if (mWebView.canGoBack()) {
+ mWebView.goBack();
+ return;
+ }
+
+ // Otherwise defer to system default behavior.
+ super.onBackPressed();
+ }
+ */
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavView_Bar);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(1);
         menuItem.setChecked(true);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -79,7 +95,12 @@ public class BlogActivity extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent intent1 = new Intent(BlogActivity.this, MainActivity.class);
+        startActivity(intent1);
+        finish();
+    }
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new MarketingFragment());

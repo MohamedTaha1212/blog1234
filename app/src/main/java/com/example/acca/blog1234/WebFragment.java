@@ -36,8 +36,8 @@ public class WebFragment extends Fragment implements LoaderManager.LoaderCallbac
 
         blogAdapter = new BlogAdapter(getActivity(),0,new ArrayList<BlogArticle>());
         webListViw.setAdapter(blogAdapter);
-        webListViw.setEmptyView(         );
-        webListViw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        /** webListViw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -49,7 +49,8 @@ public class WebFragment extends Fragment implements LoaderManager.LoaderCallbac
                 websiteIntent.putExtra("url",webUrl);
                 startActivity(websiteIntent);
             }
-        });
+
+        });*/
 
         return rootView;
     }
@@ -62,11 +63,11 @@ public class WebFragment extends Fragment implements LoaderManager.LoaderCallbac
 
     @Override
     public void onLoadFinished(@NonNull Loader<List<BlogArticle>> loader, List<BlogArticle> blogArticles) {
-        View loadingIndicator = getView().findViewById(R.id.loading_indicator);
+       /** View loadingIndicator = getView().findViewById(R.id.loading_indicator);
         loadingIndicator.setVisibility(View.GONE);
         mEmptyStateTextView.setText("Check your internet connection");
         blogAdapter.clear();
-
+*/
         if (blogArticles != null && !blogArticles.isEmpty()){
             blogAdapter.addAll(blogArticles);
         }

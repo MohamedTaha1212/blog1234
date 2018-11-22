@@ -53,5 +53,13 @@ public class MaterialsActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent1 = new Intent(MaterialsActivity.this, MainActivity.class);
+        startActivity(intent1);
+        finish();
     }
 }

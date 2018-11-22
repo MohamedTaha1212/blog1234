@@ -1,7 +1,6 @@
 package com.example.acca.blog1234;
 
 import android.annotation.SuppressLint;
-import android.app.Fragment;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -10,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -54,5 +54,22 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+    private static final int TIME_INTERVAL = 2000;
+    private long mBackPressed;
+
+    @Override
+    public void onBackPressed()
+    {
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis())
+        {
+            Intent a = new Intent(Intent.ACTION_MAIN);
+            a.addCategory(Intent.CATEGORY_HOME);
+            a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(a);
+        }
+        else { Toast.makeText(getBaseContext(), "Press once again to exit", Toast.LENGTH_SHORT).show(); }
+
+        mBackPressed = System.currentTimeMillis();
     }
 }

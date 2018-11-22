@@ -41,8 +41,7 @@ public static final String LOG_TAG = SoftSkillsFragment.class.getName();
 
         blogAdapter = new BlogAdapter(getActivity(),0,new ArrayList<BlogArticle>());
         softSkillsListViw.setAdapter(blogAdapter);
-        softSkillsListViw.setEmptyView(         );
-        softSkillsListViw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       /** softSkillsListViw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -54,7 +53,7 @@ public static final String LOG_TAG = SoftSkillsFragment.class.getName();
                 websiteIntent.putExtra("url",softSkillsUrl);
                 startActivity(websiteIntent);
             }
-        });
+        });*/
 
         return rootView;
     }
@@ -67,11 +66,11 @@ public static final String LOG_TAG = SoftSkillsFragment.class.getName();
 
     @Override
     public void onLoadFinished(@NonNull Loader<List<BlogArticle>> loader, List<BlogArticle> blogArticles) {
-        View loadingIndicator = getView().findViewById(R.id.loading_indicator);
+       /** View loadingIndicator = getView().findViewById(R.id.loading_indicator);
         loadingIndicator.setVisibility(View.GONE);
         mEmptyStateTextView.setText("Check your internet connection");
         blogAdapter.clear();
-
+*/
         if (blogArticles != null && !blogArticles.isEmpty()){
         blogAdapter.addAll(blogArticles);
         }

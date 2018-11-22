@@ -37,8 +37,7 @@ public class DesignFragment extends Fragment implements LoaderManager.LoaderCall
 
         blogAdapter = new BlogAdapter(getActivity(),0,new ArrayList<BlogArticle>());
         designListViw.setAdapter(blogAdapter);
-        designListViw.setEmptyView(         );
-        designListViw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+/**        designListViw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -50,7 +49,7 @@ public class DesignFragment extends Fragment implements LoaderManager.LoaderCall
                 websiteIntent.putExtra("url",designUrl);
                 startActivity(websiteIntent);
             }
-        });
+        });*/
 
         return rootView;
     }
@@ -63,10 +62,10 @@ public class DesignFragment extends Fragment implements LoaderManager.LoaderCall
 
     @Override
     public void onLoadFinished(@NonNull Loader<List<BlogArticle>> loader, List<BlogArticle> blogArticles) {
-        View loadingIndicator = getView().findViewById(R.id.loading_indicator);
+        /**View loadingIndicator = getView().findViewById(R.id.loading_indicator);
         loadingIndicator.setVisibility(View.GONE);
         mEmptyStateTextView.setText("Check your internet connection");
-        blogAdapter.clear();
+        blogAdapter.clear();*/
 
         if (blogArticles != null && !blogArticles.isEmpty()){
             blogAdapter.addAll(blogArticles);
